@@ -1,0 +1,12 @@
+---
+- name: Install development tools
+  include_tasks: development_tools.yml
+
+- name: Install utilities
+  include_tasks: utilities.yml
+
+- name: Install graphics software
+  include_tasks: graphics_software.yml
+
+- name: Install communication tools
+  include_tasks: communication_tools.yml

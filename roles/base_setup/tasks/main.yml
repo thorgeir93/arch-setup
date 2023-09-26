@@ -1,0 +1,24 @@
+---
+- name: Ensure git is installed
+  become: true
+  pacman:
+    name: git
+    state: present
+
+- name: Clone the repository
+  git:
+    repo: "{{ repository_url }}"
+    dest: "{{ repository_destination }}"
+    clone: yes
+    update: yes
+
+- name: Ensure bin directory exists
+  file:
+    path: "{{ bin_directory }}"
+    state: directory
+
+- name: Copy z.sh to bin directory
+  copy:
+    src: "{{ repository_destination }}/z.sh"
+    dest: "{{ bin_directory }}/z.sh"
+    mode: '0755'
