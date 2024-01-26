@@ -1,2 +1,1 @@
-shared_variable_1: "value1"
-shared_variable_2: "value2"
+sshkey: "/home/thorgeir/.ssh/id_rsa_personal.pub"

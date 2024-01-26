@@ -1,13 +1,13 @@
 ---
 - hosts: localhost
   vars_files:
-    - path_to_shared_vars.yml
+    - shared_vars.yml
   roles:
-    - base_setup
-    - users
-    - software
-    - desktop_environment
-    - development_tools
+    #- base_setup
+    #- users
+    #- software
+    #- desktop_environment
+    #- development_tools
     - photography
-    - network
-    - security
+    #- network
+    #- security

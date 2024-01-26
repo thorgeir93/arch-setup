@@ -1,0 +1,12 @@
+---
+- name: Ensure git is installed
+  become: true
+  pacman:
+    name: git
+    state: present
+
+- name: checkout git repo
+  ansible.builtin.git:
+    repo: "{{ repo }}"
+    dest: "{{ dest }}"
+    key_file: "{{ sshkey }}"
