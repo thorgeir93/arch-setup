@@ -1,13 +1,4 @@
 ---
-- name: Install Terminal
-  become: true
-  pacman:
-    name: '{{ item }}'
-    state: present
-  loop:
-    - rxvt-unicode
-    - bash-completion
-
 - name: Install Appearance tools
   become: true
   pacman:

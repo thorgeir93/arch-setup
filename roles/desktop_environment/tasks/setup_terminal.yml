@@ -1,0 +1,23 @@
+---
+- name: Install Terminal
+  become: true
+  pacman:
+    name: '{{ item }}'
+    state: present
+  loop:
+    - rxvt-unicode
+    - bash-completion
+
+- name: Ensure .urxvt/ext directory exists
+  become: no
+  file:
+    path: "{{ ansible_env.HOME }}/.urxvt/ext"
+    state: directory
+    mode: '0755'
+
+- name: Download URxvt resize-font plugin
+  become: no
+  get_url:
+    url: https://raw.githubusercontent.com/simmel/urxvt-resize-font/master/resize-font
+    dest: "{{ ansible_env.HOME }}/.urxvt/ext/resize-font"
+    mode: '0755'

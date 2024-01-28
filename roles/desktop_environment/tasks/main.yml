@@ -1,7 +1,10 @@
 ---
-- name: Setup login screen
-  include_tasks: loginscreen.yml
-
 - name: Install core tools for desktop environment
   include_tasks: install_core.yml
+
+- name: Setup login screen
+  include_tasks: setup_loginscreen.yml
+
+- name: Setup terminal
+  include_tasks: setup_terminal.yml
 
