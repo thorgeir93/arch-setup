@@ -1,0 +1,22 @@
+---
+- name: Install LightDM
+  pacman:
+	name: lightdm
+	state: present
+
+- name: Install LightDM GTK+ Greeter
+  pacman:
+	name: lightdm-gtk-greeter
+	state: present
+
+- name: Update LightDM GTK+ Greeter config
+  lineinfile:
+	path: /etc/lightdm/lightdm-gtk-greeter.conf
+	regexp: '^background='
+	line: 'background=/usr/share/pixmaps/dark_gray_grainy_texture.jpg'
+	create: yes
+
+- name: Copy custom wallpaper for LightDM
+  copy:
+	src: ~/git/hub/thorgeir/wallpapers/dark_gray_grainy_texture.jpg
+	dest: /usr/share/pixmaps/dark_gray_grainy_texture.jpg

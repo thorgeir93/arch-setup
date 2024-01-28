@@ -1,18 +1,7 @@
-- name: Install Terminal
-  become: true
-  pacman:
-    name: '{{ item }}'
-    state: present
-  loop:
-    - rxvt-unicode
-    - bash-completion
+---
+- name: Setup login screen
+  include_tasks: loginscreen.yml
 
-- name: Install Appearance tools
-  become: true
-  pacman:
-    name: '{{ item }}'
-    state: present
-  loop:
-    - picom 
-    - nitrogen
-    - feh
+- name: Install core tools for desktop environment
+  include_tasks: install_core.yml
+
