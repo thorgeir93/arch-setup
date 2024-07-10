@@ -1,0 +1,47 @@
+- name: Install required packages
+  become: true
+  pacman:
+    name: '{{ item }}'
+    state: present
+  loop:
+    - emacs
+    - cmake
+
+- name: Install Emacs doom
+  git:
+    # git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs ~/.config/emacs/bin/doom install
+    # Just make chat GPT do this
+
+
+# Download org-medium-style.el
+# Add this line to .config/doom/config.el
+(load! "~/.config/doom/org-medium-style.el")
+defun +org/python-code-block ()
+  (interactive)
+  (insert
+   "#+begin_src python :results verbatim replace output :exports results\n\n#+end_src"))
+# Just upload my config.el to github and use it there.
+
+
+
+# Add this to .config/doom/packages.el
+(package! org-modern)
+(package! org-download)
+(package! org-appear)
+
+# Edit init.el
+(org +download)               ; organize your plain life in plain text
+
+
+- name: Set .config/emacs/bin to PATH
+  lineinfile:
+    path: "{{ item }}"
+    line: "{{ line }}"
+  with_items:
+    - "~/.bashrc"
+  vars:
+    line: |
+      export PATH="${PATH}:/home/thorgeir/.config/emacs/bin"
+
+- name: Doom sync
+  shell: "doom sync"
